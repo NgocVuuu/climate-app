@@ -34,12 +34,6 @@ import { LocationContext } from '../contexts/LocationContext';
 import { DebounceInput } from 'react-debounce-input';
 import { MotionBox } from '../components/MotionBox';
 
-
-const icons = require.context( '../assets/images/icons', true, /\.(png|jpe?g|svg)$/);
-const paths = icons.keys ()
-const images = paths.map( path => icons ( path ) )
-
-
 interface WeatherData {
   coord: {
     lon: number,
@@ -158,7 +152,7 @@ function Landing() {
   }
 
   let LandingImg = inicialFigure
-  
+
   switch (data?.weather[0].main) {
     case 'Clear':
       LandingImg = sunFigure;
@@ -200,63 +194,67 @@ function Landing() {
       break
   }
 
+  const icons = require.context( '../assets/images/icons', true, /\.(png|jpe?g|svg)$/);
+  const paths = icons.keys ()
+  const images = paths.map( path => icons ( path ) )
 
   let icon = initialIcon
+
   switch (data?.weather[0].icon) {
     case '01d':
-      icon = images[0]
+      icon = images[0].default
       break
 
     case '01n':
-      icon = images[1]
+      icon = images[1].default
       break
 
     case '02d':
-      icon = images[2]
+      icon = images[2].default
       break
 
     case '02n':
-      icon = images[3]
+      icon = images[3].default
       break
 
-    case '03d'|| '03n' || '04d' || '04n':
-      icon = images[4]
+    case '03d' || '03n' || '04d' || '04n':
+      icon = images[4].default
       break
 
     case '09d':
-      icon = images[5]
+      icon = images[5].default
       break
 
     case '09n':
-      icon = images[6]
+      icon = images[6].default
       break
 
     case '10d' || '10n':
-      icon = images[7]
+      icon = images[7].default
       break
 
     case '11d':
-      icon = images[8]
+      icon = images[8].default
       break
     
     case '11n':
-      icon = images[9]
+      icon = images[9].default
       break
 
     case '13d':
-      icon = images[10]
+      icon = images[10].default
       break
 
     case '13n':
-      icon = images[11]
+      icon = images[11].default
       break
 
     case '50d':
-      icon = images[12]
+      icon = images[12].default
       break
 
     case '50n':
-      icon = images[13]
+      icon = images[13].default
       break
   }
 
@@ -315,17 +313,17 @@ function Landing() {
                 <div className="extras">
                   <div className="get-location" onClick={getLocation}>
                     <span className="get-location-button">
-                      Minha localização
+                      Vị trí của tôi
                     </span>
                   </div>
                   {!valid && (
-                    <span className="snackbar">Cidade inválida</span>
+                    <span className="snackbar">Thành phố không hợp lệ</span>
                   )}
                 </div>
                 
                 <div className="input-wrapper">
                   <DebounceInput
-                    placeholder="Digite uma cidade"
+                    placeholder="Nhập một thành phố"
                     type="text"
                     name="city"
                     value={city}
@@ -378,15 +376,15 @@ function Landing() {
 
             <div className="other-results">
               <div className="other">
-                Sensação térmica: <br/>
+                Cảm giác nhiệt: <br/>
                 <span>{data?.main.feels_like.toFixed(1)} ºC</span>
               </div>
               <div className="other">
-                Temp. Mínima: <br/>
+                Nhiệt độ tối thiểu: <br/>
                 <span>{data?.main.temp_min.toFixed(1)} ºC</span>
               </div>
               <div className="other">
-                Temperatura Máxima: <br/>
+              Nhiệt độ tối đa: <br/>
                 <span>{data?.main.temp_max.toFixed(1)} ºC</span>
               </div>
             </div>
@@ -398,7 +396,7 @@ function Landing() {
                 <div className="icon-secondary-results humidity">
                   <RiDropFill />
                 </div>
-                <p>Umidade: <br/>
+                <p>Độ ẩm: <br/>
                 {data?.main.humidity}%</p>
               </div>
               
@@ -406,7 +404,7 @@ function Landing() {
                 <div className="icon-secondary-results">
                   <WiStrongWind />
                 </div>
-                <p>Vento: <br/>
+                <p>Gió: <br/>
                 {data?.wind.speed.toFixed(1)} m/s</p>
               </div>
 
@@ -414,7 +412,7 @@ function Landing() {
                 <div className="icon-secondary-results">
                   <WiCloudy />
                 </div>
-                <p>Nuvens: <br/>
+                <p>Mây: <br/>
                 {data?.clouds.all}%</p>
               </div>
 
@@ -429,7 +427,7 @@ function Landing() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Abrir no Google Maps
+                  Mở Google Maps
                 </a>
               </div>)
             }
@@ -439,7 +437,7 @@ function Landing() {
       <div className="credits">
         by&nbsp;
         <a href="https://github.com/joaovictornsv" target="_blank" rel="noopener noreferrer">
-          <strong>João Victor</strong>
+          <strong>21CE2</strong>
         </a>
       </div>
       </div>
